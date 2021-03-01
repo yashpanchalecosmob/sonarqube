@@ -1,0 +1,23 @@
+FROM centos:7
+
+RUN gpgcheck=0
+
+RUN yum --nogpgcheck update -y 
+
+RUN yum install wget -y
+
+#RUN curl -L -C - -b "oraclelicense=accept-securebackup-cookie" -O http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+
+#RUN  curl -L -C - -b "oraclelicense=accept-securebackup-cookie" -O https://download.oracle.com/otn/java/jdk/11.0.10+8/020c4a6d33b74f6a9d2bc6fbf189da81/jdk-11.0.10_linux-aarch64_bin.rpm
+
+COPY jdk-11.0.10_linux-x64_bin.rpm .
+
+RUN yum localinstall jdk-11.0.10_linux-x64_bin.rpm -y
+#RUN yum localinstall jdk-8u131-linux-x64.rpm -y
+
+RUN cd /usr/java
+
+
+
+
+CMD ["sh", "-c", "tail -f /dev/null"]
